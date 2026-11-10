@@ -1,0 +1,57 @@
+# Copy to config.yaml and edit. config.yaml holds personal data - keep it private.
+
+site_url: "https://ttdevasthanams.ap.gov.in/home/dashboard"
+mobile: "9740525428"          # your registered mobile number (OTP is typed by YOU in the browser)
+
+# Dates in YYYY-MM-DD, in order of preference. Saturdays/Sundays are recommended;
+# non-weekend dates are allowed but print a warning.
+dates:
+  - "2027-02-06"   # Saturday
+  - "2027-02-07"   # Sunday
+
+# Preferred slot labels in priority order (substring match on the slot text shown by the site,
+# e.g. "10:00", "12:00 PM"). Empty list = take the first available slot.
+slots:
+  - "10:00"
+  - "12:00"
+  - "14:00"
+
+# If no slot is available on any date: re-check every N seconds, at most M times (be polite: min 20s).
+poll_seconds: 30
+max_polls: 20
+
+# Optional: wait until this local time (24h HH:MM, or YYYY-MM-DD HH:MM) before starting
+# - useful when the monthly quota opens at a fixed time. Leave empty to start immediately.
+start_at: ""
+
+pilgrims:                      # number of pilgrims = number of entries (max 6 per TTD booking)
+  - name: "Yeshwanth Vankina"
+    age: 35
+    gender: "Male"             # Male / Female / Other
+    id_type: "Aadhaar"         # as shown in the site's dropdown
+    id_number: "914707082103"
+  - name: "Haraharisha Vankina"
+    age: 30
+    gender: "Female"
+    id_type: "Aadhaar"
+    id_number: "344938179985"
+
+# Browser
+browser:
+  profile_dir: "./profile"     # keeps your login session between runs
+  slow_mo_ms: 100
+  default_timeout_ms: 30000
+
+# Optional selector overrides, if the built-in label-based matching misses something.
+# Run `python ttd_booking.py --inspect` to see the real field names/ids, then fill these in.
+# Each value is a CSS selector (or list of them). Use {d:%d} style placeholders where noted.
+selectors:
+  date_cell: ""                # e.g. "td[aria-label*='{d:%d %B %Y}']"   ({d} = the date)
+  slot_option: ""              # e.g. ".slot-card"
+  name: ""
+  age: ""
+  gender: ""
+  id_type: ""
+  id_number: ""
+  add_pilgrim_button: ""
+  proceed_button: ""
